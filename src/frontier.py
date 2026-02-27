@@ -18,14 +18,16 @@ import pandas as pd
 
 @dataclass(frozen=True)
 class FrontierPoint:
-    mu_target: float
-    port_return: float
-    port_vol: float
-    weights: pd.Series
+    mu_target: float #target expedted return
+    port_return: float #portfolip return (matches targes for the Larange solution)
+    port_vol: float #portfolio volatily (standard deviation)
+    weights: pd.Series #vector of portfolio weichts
 
 
 def _align(mu: pd.Series, cov: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray, list[str]]:
+    """converting the data into arrays (uses liniar algebra make the data easier for the computer to handle"""
     if not isinstance(mu, pd.Series):
+
         raise TypeError("mu must be a pandas Series")
     if not isinstance(cov, pd.DataFrame):
         raise TypeError("cov must be a pandas DataFrame")
@@ -38,7 +40,7 @@ def _align(mu: pd.Series, cov: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray, li
     cov_aligned = cov.loc[assets, assets]
     mu_vec = mu.loc[assets].to_numpy(dtype=float)
     cov_mat = cov_aligned.to_numpy(dtype=float)
-    return mu_vec, cov_mat, assets
+    return mu_vec, cov_mat, assets #returns the expected retuns vecor and the covariance matrix 
 
 
 def efficient_frontier(
@@ -78,7 +80,7 @@ def efficient_frontier(
     B = ones @ Sinv_mu
     C = mu_vec @ Sinv_mu
 
-    D = A * C - B * B
+    D = A * C - B * B #determinant in the solution, ensures matrix is non-singular
     if D == 0.0:
         raise ValueError("Cannot compute frontier (matrix is singular or degenerate). Try ridge>0.")
 
@@ -114,3 +116,10 @@ def efficient_frontier(
 
     frontier_df = pd.DataFrame(rows)
     return frontier_df, weights_list
+
+
+"""
+This is an analytical solution of the Markowitz efficient frontier. 
+As mu_target varies, the corresponding (σ, μ) points form a hyperbola in risk-return space.
+
+"""
