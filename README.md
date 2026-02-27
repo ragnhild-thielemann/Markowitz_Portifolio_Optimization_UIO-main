@@ -18,7 +18,7 @@ End-to-end workflow for Markowitz portfolio optimization:
 # Demo: 
 ![Demo](images/portefolio.png)
 ![Demo](images/metrics_and_risk.png)
-![Demo](images/efficient_frontier_demo.png)
+![Demo](images/plotts.png)
 
 
 # The mathematics
