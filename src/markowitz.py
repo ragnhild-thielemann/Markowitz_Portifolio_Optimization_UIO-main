@@ -7,7 +7,13 @@ Analytical Markowitz portfolios:
 
 Assumptions:
 - No constraints like w_i >= 0 (short selling allowed)
-- Covariance matrix is invertible, at least numerically. 
+- Σ = covariance matrix of asset returns.  
+- Invertibility assumption: The covariance matrix must be invertible (non-singular).  
+        Numerically, this is usually true for real-world data, or it can be ensured by adding a small diagonal **ridge regularization** (`ridge > 0`).  
+- Consequence: Because Σ⁻¹ exists, the system has an unique solution for the optimal weights `w*` for each target return.  
+- If Σ were singular, the determinant D = A*C - B^2 would be 0, and the frontier could not be computed.  
+
+> In practice, invertibility guarantees that each point on the efficient frontier corresponds to a unique set of portfolio weights.
 """
 
 from typing import Union
