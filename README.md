@@ -1,13 +1,17 @@
-# Markowitz_Portifolio_Optimization
+# Markowitz Portifolio Optimization
 
-End-to-end workflow for Markowitz portfolio optimization:
+## Introduction
 
-- Fetch and clean historical stock prices  
-- Compute returns, expected returns, and covariance  
-- Calculate minimum-variance and max-Sharpe portfolios  
-- Compute portfolio metrics (return, volatility, Sharpe ratio)  
-- Recommend portfolio based on risk profile  
-- Display dashboard and plot the efficient frontier
+This project implements an end-to-end framework for Markowitz Mean–Variance Portfolio Optimization, combining financial theory with practical data analysis.
+
+Using historical price data, the model:
+- Retrieves and cleans asset price series
+- Computes returns, expected returns, and the covariance matrix
+- Constructs the minimum-variance and maximum-Sharpe portfolios
+- Evaluates portfolio performance (return, volatility, Sharpe ratio)
+- Selects an appropriate strategy based on a rule-based risk profiling model
+- Visualizes results through an interactive dashboard and efficient frontier plot
+- The implementation bridges mathematical theory and applied quantitative finance, providing a transparent and intuitive tool for portfolio construction and risk assessment
 
 ## Author
 - Ragnhild Thielemann
